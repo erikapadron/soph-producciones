@@ -1,56 +1,117 @@
-console.log("¡Hola!");
-var estilodefotos=prompt("Ingrese el estilo de fotos que desea realizar");
-var cantidad= parseInt(prompt('¿Cantidad de fotos deseadas?'));
-const iva= 1.21;
+console.log("¡Hola!")
+
+const URLGET = "https://jsonplaceholder.typicode.com/posts"
+
+$("h1").fadeOut("slow", function(){
+    $("h1").fadeIn(1000);
+}); 
 
 
-if((cantidad == "") || (estilodefotos == "")) {
-    alert("¡Le falta ingresar algún dato, por favor, vuelva a intentar!");
-}
+$("#btnCotizar").on('click', function () {
+    $("#datoReserva").append(
+        
+        `
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="¿15?¿20?¿x?" value="Cantidad de fotos">
+                    <label for="floatingInputGrid">Cantidad de fotos</label>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                            <option selected>Seleccioná</option>
+                            <option value="1">Exterior</option>
+                            <option value="2">En estudio</option>
+                            <option value="3">Locacion</option>
+                        </select>
+                        <label for="floatingSelectGrid">Elige tipo de fotos</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+        );
 
-sesion= 'Estilo tipo' + ' ' + estilodefotos + ' ' +'con' + ' '+  cantidad + ' ' + 'fotos editadas'
-
-function precio (cantidad, iva) {
-    return cantidad * iva * 250;
-}
-
-var preciofinal = precio(cantidad, iva);
-console.log(preciofinal);
-
-alert( sesion + ' ' + 'y su precio final es de: $' + preciofinal);
-
-const arrayFechas= ["01/07", "03/07", "02/07", "15/07", "20/07"];
-arrayFechas.sort();
-const arrayHorarios= ["10hs", "08hs", "15hs", "18hs", "20hs"]
-arrayHorarios.sort();
-const mostrar= arrayFechas.map(x => x + ' ' + arrayHorarios)
-
-
-function reserva(nombre, fecha, horario, horasDeSesion) {
-    var nombre= prompt("Ingrese el nombre de quien reserva");
-    alert(mostrar)
-    var fecha = prompt("Ingrese la fecha que desea reservar");
-    var horario = prompt("Ingrese el horario en el que quieres realizar la sesión");
-    var horasDeSesion = prompt("Ingresa horas estimadas de sesión");
-    this.nombre = nombre;
-    this.fecha = fecha;
-    this.horario = horario;
-    this.horasdesesion = horasDeSesion;
-    this.estado = "reservada";
-}
-
-const reserva1 = new reserva();
-const reserva2 = new reserva();
-const reserva3 = new reserva();
+});
 
 
-console.log(reserva1);
-console.log(reserva2);
-console.log(reserva3);
+$("#btnReserva").on('click', function () {
+    const fechas = [
+        {
+            dia : '15/07',
+            horario : '12:00',
+        },
+        {        
+            dia : '17/07',
+            horario : '15:00',
+        },
+        {        
+            dia : '17/07',
+            horario : '10:00',
+        },
+        {        
+            dia : '25/07',
+            horario : '09:00',
+        },
+        {        
+            dia : '05/08',
+            horario : '12:00',
+        },
+        {        
+            dia : '19/08',
+            horario : '17:00',
+        }
+    
+    ];
+    
+    
+    for(let element of fechas){
+        
+        $("#fechas").append(
+        `
+        <button class="btn btn-primary text-uppercase" data-bs-toggle="modal" data-bs-target="#exampleModal">${element.dia} ${element.horario}</button>
+        `
+        );
+    }
 
+});
 
-
-
-
-
-
+$("#fechas").on('click', function () {
+    $("#datoReserva2").append(
+        `
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Datos de reserva</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Nombre:</label>
+                                <input type="name" class="form-control" id="recipient-name" required="required">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Mail:</label>
+                                <input type="email" class="form-control" required="required">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Número:</label>
+                                <input type="tel" class="form-control" required="required">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" type="submit" id="enviarReserva">
+                                Concretar reserva
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+    );
+});
