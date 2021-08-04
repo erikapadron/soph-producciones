@@ -3,8 +3,6 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
         <title>SoPH producciones</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -25,8 +23,8 @@
                         <li class="nav-item"><a class="nav-link" href="#services">Servicios</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about">Sobre mí</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#cotiza">Cotizá</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#cotiza">Cotizá</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,7 +46,7 @@
                     <h2 class="section-heading text-uppercase">Servicios</h2>
                     <h3 class="section-subheading text-muted">Me dedico a los siguientes estilos:</h3>
                 </div>
-                <div class="row text-center">
+                <div class="row text-center" >
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
@@ -229,7 +227,7 @@
                                 <h4>2020</h4>
                                 <h4 class="subheading">CUARENTENA</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">Ha sido un año bastante atipoco y con menos trabajo debido al confinamiento, sin embargo, he logrado en los momentos que se podía realizar grandiosos trabajos.</p></div>
+                            <div class="timeline-body"><p class="text-muted">Ha sido un año bastante atípico y con menos trabajo debido al confinamiento, sin embargo, he logrado en los momentos que se podía realizar grandiosos trabajos.</p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
@@ -247,45 +245,17 @@
                 </ul>
             </div>
         </section>
-        <section class="page-section" id="cotiza">
-            <div id="datoReserva"></div>
-            <div class="container text-center">
-                <div>
-                    <h3>¿Te gustaría saber cuánto costaría tu sesión?</h3>
-                    <button class="btn btn-primary btn-xl text-uppercase" type="button" id="btnCotizar">
-                        <i class="fas fa-calculator me-1"></i>
-                        Cotizá
-                    </button>
-
-                </div>
-                <div>
-                    <h3>Reservá una fecha:</h3>
-                    <h5>Fechas disponibles</h5>
-                    <div id="fechas">
-                        
-                    </div>
-                    <button class="btn btn-primary btn-xl text-uppercase" type="button" id="btnReserva">
-                        <i class="fas fa-calendar me-1"></i>
-                        Reservá
-                    </button>
-                    <div id="datoReserva2"></div>
-                </div>
-                <div id="reservado">
-
-                </div>
-            </div>
-        </section>
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Contáctame</h2>
                     <h3 class="section-subheading text-muted">Ante cualquier consulta no dudes en esribirme</h3>
                 </div>
-                <form id="contactForm">
+                <form id="contactForm" method="POST">
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" id="name" type="text" placeholder="Tu nombre" required="required" />
+                                <input class="form-control" id="name2" type="text" placeholder="Tu nombre" required="required" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group">
@@ -306,12 +276,48 @@
                     </div>
                     <div class="text-center">
                         <div id="success"></div>
-                        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit">
+                        <button class="btn btn-primary btn-xl text-uppercase" id="sendMessageButton" type="submit" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             <i class="fas fa-envelope me-1"></i>
                             enviar mensaje
                         </button>
+                        <div id="gracias"></div>
                     </div>
                 </form>
+            </div>
+        </section>
+        <section class="page-section" id="cotiza">
+            <div id="datoReserva"></div>
+            <div class="container text-center">
+                <div>
+                    <h3>¿Te gustaría saber cuánto costaría tu sesión?</h3>
+                    <div class="row g-2">
+                        <div class="col-md" id="total">
+                            <div class="form-floating">
+                                <input name="cotizacion" type="paraTotal" class="form-control" id="cotizacion" placeholder="¿15?¿20?¿x?" value="¿15?¿20?¿x?">
+                                <label for="cotizacion">¿Cantidad de fotos editadas deseadas?</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-xl text-uppercase" type="button" id="btnCotizar">
+                        <i class="fas fa-calculator me-1"></i>
+                        Cotizá
+                    </button>
+                </div>
+                <div>
+                    <h3>Reservá una fecha:</h3>
+                    <h5>Fechas disponibles</h5>
+                    <div id="fechas"></div>
+                    <div id="datoReserva2"></div>
+                    <div id="datosAGuardar"></div>
+                    <button class="btn btn-primary btn-xl text-uppercase" type="button" id="btnReserva">
+                        <i class="fas fa-calendar me-1"></i>
+                        Reservá
+                    </button>
+
+                </div>
+                <div id="reservado">
+
+                </div>
             </div>
         </section>
         <footer class="footer py-4">
@@ -593,9 +599,7 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="js/funciones.js"></script>
-        <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script src="js/wow.js"></script>
         <script>
